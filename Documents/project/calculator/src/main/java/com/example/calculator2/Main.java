@@ -1,13 +1,13 @@
-package com.example.calculator;
+package com.example.calculator2;
 
 import java.util.Scanner;
 
-public class Calculator {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Calculator calculator = new Calculator();
 
         while(true){
-
             int[] number = new int[2]; // 숫자를 담을 배열
             int answer = 0;
 
@@ -33,23 +33,7 @@ public class Calculator {
                 continue;
             }
 
-            switch (operator) {
-                case '+':
-                    answer = number[0] + number[1];
-                    break;
-
-                case '-':
-                    answer = number[0] - number[1];
-                    break;
-
-                case '*':
-                    answer = number[0] * number[1];
-                    break;
-
-                case '/':
-                    answer = number[0] / number[1];
-                    break;
-            }
+            answer = calculator.calculate(number[0], number[1], operator);
 
             System.out.println("결과 : " + answer);
             System.out.print("종료하려면 exit 입력, 아니라면 enter을 입력하세요 : ");
@@ -58,7 +42,6 @@ public class Calculator {
             if (exit.equals("exit")){
                 break;
             }
-
         }
 
         System.out.println("계산기를 종료했습니다.");
