@@ -3,7 +3,23 @@ package com.example.calculator2;
 import java.util.ArrayList;
 
 public class Calculator {
-    ArrayList<Integer> results = new ArrayList<Integer>();
+    private ArrayList<Integer> results = new ArrayList<Integer>();
+
+    public String getAllResults(){
+        return results.toString();
+    }
+
+    public int getResults(int index){
+        return results.get(index);
+    }
+
+    public void setResult(int index, int value){
+        results.set(index, value);
+    }
+
+    public void deleteFirstResult(){
+        results.remove(0);
+    }
 
     public int calculate(int number1, int number2, char operator){
         int answer = 0;
