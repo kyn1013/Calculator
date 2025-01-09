@@ -19,6 +19,17 @@ public class Main {
             String operatorStr = sc.nextLine();
             char operator = operatorStr.charAt(0);
 
+            //잘못된 입력값 검증
+            if (operator != '+' && operator != '-' && operator != '*' && operator != '/'){
+                System.out.println("+, -, *, / 만 입력해 주세요.");
+                continue;
+            }
+
+            if (secondNumber.charAt(0) == 0) {
+                System.out.println("0으로 나눌 수 없습니다.");
+                continue;
+            }
+
             double a = Double.parseDouble(firstNumber);
             double b = Double.parseDouble(secondNumber);
 
@@ -47,5 +58,10 @@ public class Main {
         System.out.println("가장 먼저 저장된 계산 결과값을 삭제합니다!");
         calculator.deleteFirstResult();
         System.out.println("전체 연산 결과 리스트: " + calculator.getAllResults());
+
+        System.out.print("연산 결과 중에서 입력받을 해당 값보다 큰 값들만 출력할 예정입니다. 값을 입력해 주세요 : ");
+        int minimum = sc.nextInt();
+        System.out.println("입력된 값보다 큰 결과값 출력 : " + calculator.getResult(minimum));
+
     }
 }

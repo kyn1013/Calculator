@@ -1,9 +1,10 @@
 package com.example.calculator2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
-    private ArrayList<Integer> results = new ArrayList<Integer>();
+    private List<Integer> results = new ArrayList<Integer>();
 
     public String getAllResults(){
         return results.toString();

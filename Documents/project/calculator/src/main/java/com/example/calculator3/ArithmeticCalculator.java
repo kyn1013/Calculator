@@ -1,6 +1,9 @@
 package com.example.calculator3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArithmeticCalculator {
 
@@ -9,7 +12,16 @@ public class ArithmeticCalculator {
     private OperatorType divideOperator = OperatorType.DIVIDE;
     private OperatorType multiplyOperator = OperatorType.MULTIPLY;
 
-    private ArrayList<Double> results = new ArrayList<>();
+    private List<Double> results = new ArrayList<>();
+
+    public String getResult(int minimum){
+        String filterdResults =  this.results.stream()
+                .filter( result -> result > minimum)
+                .collect(Collectors.toList())
+                .toString();
+
+        return filterdResults;
+    }
 
     public <T extends Number> Double calculate(T number1, T number2, char operator){
         double answer = 0.0;
