@@ -1,6 +1,7 @@
 package com.example.calculator3;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArithmeticCalculator {
 
@@ -9,7 +10,7 @@ public class ArithmeticCalculator {
     private OperatorType divideOperator = OperatorType.DIVIDE;
     private OperatorType multiplyOperator = OperatorType.MULTIPLY;
 
-    private ArrayList<Double> results = new ArrayList<>();
+    private List<Double> results = new ArrayList<>();
 
     public <T extends Number> Double calculate(T number1, T number2, char operator){
         double answer = 0.0;
