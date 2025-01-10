@@ -1,6 +1,7 @@
 package com.example.calculator3;
 
 import com.example.common.exception.BadInputException;
+import com.example.common.exception.DivideByZeroException;
 import com.example.common.exception.InvalidOperatorException;
 
 import java.util.regex.Pattern;
@@ -34,7 +35,7 @@ public class Parser {
         setOperator(operator);
     }
 
-    public Double executeCalculator() {
+    public Double executeCalculator() throws DivideByZeroException {
         // 여기서 String 타입의 피연산자들을 실수형이나 정수형으로 변환하여 자유롭게 외부에서 타입을 지정할 수 있음
         Double firstNumber = Double.parseDouble(firstInput);
         Double secondNumber = Double.parseDouble(secondInput);

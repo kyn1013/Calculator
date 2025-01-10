@@ -1,30 +1,22 @@
 package com.example.calculator3;
 
+import com.example.common.exception.DivideByZeroException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArithmeticCalculator {
 
-    private OperatorType addOperator = OperatorType.ADD;
-    private OperatorType subtractOperator = OperatorType.SUBTRACT;
-    private OperatorType divideOperator = OperatorType.DIVIDE;
-    private OperatorType multiplyOperator = OperatorType.MULTIPLY;
-
     private List<Double> results = new ArrayList<>();
 
-    public <T extends Number> Double calculate(T number1, T number2, String operator){
-        double answer = 0.0;
-
-        //연산 수행
-        if (operator.equals(addOperator.getOperator())) {
-            answer = number1.doubleValue() + number2.doubleValue();
-        } else if (operator.equals(subtractOperator.getOperator())) {
-            answer = number1.doubleValue() - number2.doubleValue();
-        } else if (operator.equals(multiplyOperator.getOperator())) {
-            answer = number1.doubleValue() * number2.doubleValue();
-        } else if (operator.equals(divideOperator.getOperator())) {
-            answer = number1.doubleValue() / number2.doubleValue();
-        }
+    public <T extends Number> Double calculate(T firstInput, T secondInput, String operator) throws DivideByZeroException {
+        double answer = switch (operator) {
+            case "+" -> OperatorType.PLUS.calculate(firstInput, secondInput);
+            case "-" -> OperatorType.MINUS.calculate(firstInput, secondInput);
+            case "*" -> OperatorType.MULTIPLY.calculate(firstInput, secondInput);
+            case "/" -> OperatorType.DIVIDE.calculate(firstInput, secondInput);
+            default -> throw new IllegalArgumentException("Invalid operator: " + operator);
+        };
 
         results.add(answer);
         return answer;

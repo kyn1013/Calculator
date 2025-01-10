@@ -1,6 +1,7 @@
 package com.example.calculator3;
 
 import com.example.common.exception.BadInputException;
+import com.example.common.exception.DivideByZeroException;
 import com.example.common.exception.InvalidOperatorException;
 
 import java.util.Scanner;
@@ -31,9 +32,11 @@ public class Main {
                 if (exit.equals("exit")){
                     break;
                 }
-            } catch (BadInputException e){
+            } catch (BadInputException e) {
                 System.out.println(e.getMessage());
             } catch (InvalidOperatorException e) {
+                System.out.println(e.getMessage());
+            } catch (DivideByZeroException e) {
                 System.out.println(e.getMessage());
             }
         }
