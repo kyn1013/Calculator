@@ -7,7 +7,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Calculator calculator = new Calculator();
 
-        //계산기 클래스 활용 부분
         while(true){
             int[] number = new int[2]; //피연산자를 담을 배열
             int answer = 0;
@@ -17,7 +16,7 @@ public class Main {
                 number[i] = sc.nextInt();
             }
 
-            sc.nextLine(); //버퍼 비우기
+            sc.nextLine();
 
             System.out.print("사칙연산 기호를 입력하세요 : ");
             String operatorStr = sc.nextLine();
