@@ -1,47 +1,46 @@
 package com.example.calculator3;
 
+import com.example.common.exception.BadInputException;
+import com.example.common.exception.InvalidOperatorException;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArithmeticCalculator calculator = new ArithmeticCalculator();
+        Parser parser = new Parser();
 
         while(true){
-            double answer = 0;
+            try{
+                System.out.print("첫 번째 숫자를 입력하세요 : ");
+                String firstNumber = sc.nextLine();
+                System.out.print("두 번째 숫자를 입력하세요 : ");
+                String secondNumber = sc.nextLine();
 
-            System.out.print("첫 번째 숫자를 입력하세요 : ");
-            String firstNumber = sc.nextLine();
-            System.out.print("두 번째 숫자를 입력하세요 : ");
-            String secondNumber = sc.nextLine();
+                parser.validateInputNumbers(firstNumber, secondNumber);
 
-            System.out.print("사칙연산 기호를 입력하세요 : ");
-            String operatorStr = sc.nextLine();
-            char operator = operatorStr.charAt(0);
+                System.out.print("사칙연산 기호를 입력하세요 : ");
+                String operator = sc.nextLine();
 
-            //잘못된 입력값 검증
-            if (operator != '+' && operator != '-' && operator != '*' && operator != '/'){
-                System.out.println("+, -, *, / 만 입력해 주세요.");
-                continue;
-            }
+                parser.validateOperator(operator);
 
-            if (secondNumber.charAt(0) == 0) {
-                System.out.println("0으로 나눌 수 없습니다.");
-                continue;
-            }
-
-            double a = Double.parseDouble(firstNumber);
-            double b = Double.parseDouble(secondNumber);
-
-            System.out.println("결과 : " + calculator.calculate(a, b, operator));
-            System.out.print("종료하려면 exit 입력, 아니라면 enter을 입력하세요 : ");
-            String exit = sc.nextLine();
-            exit = exit.toLowerCase();
-            if (exit.equals("exit")){
-                break;
+                System.out.println("결과 : " + parser.executeCalculator());
+                System.out.print("종료하려면 exit 입력, 아니라면 enter을 입력하세요 : ");
+                String exit = sc.nextLine();
+                exit = exit.toLowerCase();
+                if (exit.equals("exit")){
+                    break;
+                }
+            } catch (BadInputException e){
+                System.out.println(e.getMessage());
+            } catch (InvalidOperatorException e) {
+                System.out.println(e.getMessage());
             }
         }
+
         System.out.println("계산기를 종료했습니다.");
+
+        ArithmeticCalculator calculator = parser.getArithmeticCalculator();
 
         //연산 결과 조회, 수정, 삭제 부분
         int[] inputs = new int[3];
