@@ -32,11 +32,7 @@ public class Main {
                 if (exit.equals("exit")){
                     break;
                 }
-            } catch (BadInputException e) {
-                System.out.println(e.getMessage());
-            } catch (InvalidOperatorException e) {
-                System.out.println(e.getMessage());
-            } catch (DivideByZeroException e) {
+            } catch (BadInputException | InvalidOperatorException | DivideByZeroException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -8,7 +8,8 @@ public class Calculator {
 
         while(true){
 
-            int[] number = new int[2]; // 숫자를 담을 배열
+            //입력받을 숫자를 담을 배열 선언
+            int[] number = new int[2];
             int answer = 0;
 
             System.out.print("숫자 2개를 입력하세요 : ");
@@ -33,6 +34,7 @@ public class Calculator {
                 continue;
             }
 
+            // 연산 수행
             switch (operator) {
                 case '+':
                     answer = number[0] + number[1];
