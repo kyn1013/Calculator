@@ -5,26 +5,16 @@ import java.util.List;
 
 public class ArithmeticCalculator {
 
-    private OperatorType addOperator = OperatorType.ADD;
-    private OperatorType subtractOperator = OperatorType.SUBTRACT;
-    private OperatorType divideOperator = OperatorType.DIVIDE;
-    private OperatorType multiplyOperator = OperatorType.MULTIPLY;
-
     private List<Double> results = new ArrayList<>();
 
     public <T extends Number> Double calculate(T number1, T number2, String operator){
-        double answer = 0.0;
-
-        //연산 수행
-        if (operator.equals(addOperator.getOperator())) {
-            answer = number1.doubleValue() + number2.doubleValue();
-        } else if (operator.equals(subtractOperator.getOperator())) {
-            answer = number1.doubleValue() - number2.doubleValue();
-        } else if (operator.equals(multiplyOperator.getOperator())) {
-            answer = number1.doubleValue() * number2.doubleValue();
-        } else if (operator.equals(divideOperator.getOperator())) {
-            answer = number1.doubleValue() / number2.doubleValue();
-        }
+        double answer = switch (operator) {
+            case "+" -> OperatorType.PLUS.calculate(number1, number2);
+            case "-" -> OperatorType.MINUS.calculate(number1, number2);
+            case "*" -> OperatorType.MULTIPLY.calculate(number1, number2);
+            case "/" -> OperatorType.DIVIDE.calculate(number1, number2);
+            default -> throw new IllegalArgumentException("Invalid operator: " + operator);
+        };
 
         results.add(answer);
         return answer;
