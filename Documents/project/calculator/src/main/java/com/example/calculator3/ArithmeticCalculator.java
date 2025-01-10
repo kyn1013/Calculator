@@ -1,5 +1,7 @@
 package com.example.calculator3;
 
+import com.example.common.exception.DivideByZeroException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,12 +9,12 @@ public class ArithmeticCalculator {
 
     private List<Double> results = new ArrayList<>();
 
-    public <T extends Number> Double calculate(T number1, T number2, String operator){
+    public <T extends Number> Double calculate(T firstInput, T secondInput, String operator) throws DivideByZeroException {
         double answer = switch (operator) {
-            case "+" -> OperatorType.PLUS.calculate(number1, number2);
-            case "-" -> OperatorType.MINUS.calculate(number1, number2);
-            case "*" -> OperatorType.MULTIPLY.calculate(number1, number2);
-            case "/" -> OperatorType.DIVIDE.calculate(number1, number2);
+            case "+" -> OperatorType.PLUS.calculate(firstInput, secondInput);
+            case "-" -> OperatorType.MINUS.calculate(firstInput, secondInput);
+            case "*" -> OperatorType.MULTIPLY.calculate(firstInput, secondInput);
+            case "/" -> OperatorType.DIVIDE.calculate(firstInput, secondInput);
             default -> throw new IllegalArgumentException("Invalid operator: " + operator);
         };
 
