@@ -1,18 +1,18 @@
 package com.example.calculator3;
 
 public enum OperatorType {
-    ADD('+'),
-    SUBTRACT('-'),
-    MULTIPLY('*'),
-    DIVIDE('/');
+    ADD("+"),
+    SUBTRACT("-"),
+    MULTIPLY("*"),
+    DIVIDE("/");
 
-    private final char operator;
+    private final String operator;
 
-    public char getOperator(){
+    public String getOperator(){
         return operator;
     }
 
-    OperatorType(char operator) {
+    OperatorType(String operator) {
         this.operator = operator;
     }
 

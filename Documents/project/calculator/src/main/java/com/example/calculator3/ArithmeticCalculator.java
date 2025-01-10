@@ -1,9 +1,7 @@
 package com.example.calculator3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ArithmeticCalculator {
 
@@ -14,31 +12,31 @@ public class ArithmeticCalculator {
 
     private List<Double> results = new ArrayList<>();
 
-    public String getResult(int minimum){
-        String filterdResults =  this.results.stream()
-                .filter( result -> result > minimum)
-                .collect(Collectors.toList())
-                .toString();
-
-        return filterdResults;
-    }
-
-    public <T extends Number> Double calculate(T number1, T number2, char operator){
+    public <T extends Number> Double calculate(T number1, T number2, String operator){
         double answer = 0.0;
 
         //연산 수행
-        if (operator == addOperator.getOperator()) {
+        if (operator.equals(addOperator.getOperator())) {
             answer = number1.doubleValue() + number2.doubleValue();
-        } else if (operator == subtractOperator.getOperator()) {
+        } else if (operator.equals(subtractOperator.getOperator())) {
             answer = number1.doubleValue() - number2.doubleValue();
-        } else if (operator == multiplyOperator.getOperator()) {
+        } else if (operator.equals(multiplyOperator.getOperator())) {
             answer = number1.doubleValue() * number2.doubleValue();
-        } else if (operator == divideOperator.getOperator()) {
+        } else if (operator.equals(divideOperator.getOperator())) {
             answer = number1.doubleValue() / number2.doubleValue();
         }
 
         results.add(answer);
         return answer;
+    }
+
+    public String getResult(int minimum){
+        String filterdResults =  this.results.stream()
+                .filter( result -> result > minimum)
+                .toList()
+                .toString();
+
+        return filterdResults;
     }
 
     public String getAllResults(){
